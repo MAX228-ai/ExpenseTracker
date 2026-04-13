@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Pieteikšanās — IzdevumuTrakers{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card p-4">
+            <h3 class="mb-4 text-center fw-bold">
+                <i class="bi bi-lock-fill text-primary"></i> Pieteikšanās
+            </h3>
+
+            <form method="post">
+                {% csrf_token %}
+
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        Nepareizs lietotājvārds vai parole.
+                    </div>
+                {% endif %}
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Lietotājvārds</label>
+                    <input type="text" name="username" class="form-control"
+                           placeholder="Ievadiet lietotājvārdu" autofocus required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Parole</label>
+                    <input type="password" name="password" class="form-control"
+                           placeholder="Ievadiet paroli" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="bi bi-box-arrow-in-right"></i> Pieteikties
+                </button>
+            </form>
+
+            <hr>
+            <p class="text-center mb-0">
+                Nav konta?
+                <a href="{% url 'register' %}">Reģistrējieties</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
